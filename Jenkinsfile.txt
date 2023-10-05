@@ -1,0 +1,27 @@
+pipeline{
+    agent any
+    tools{
+        maven 'M1'
+    }
+    stages{
+        stage('checkout')
+        {
+          steps{
+              git branch:'main',url:"https://github.com/KArchna/SpringPetClinic.git"
+          }  
+        }
+        stage("compile")
+        {
+            steps{
+                bat"mvn compile"
+            }
+        }
+        stage("test")
+        {
+            steps{
+                bat"mvn test"
+            }
+        }
+    }
+
+}
